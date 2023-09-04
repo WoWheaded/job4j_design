@@ -17,23 +17,20 @@ public class SimpleArrayList<T> implements SimpleList<T> {
         if (size == container.length) {
             container = grow();
         }
-        container[size] = value;
-        size++;
+        container[size++] = value;
         modCount++;
     }
 
     @Override
     public T set(int index, T newValue) {
-        Objects.checkIndex(index, size);
-        T oldValue = container[index];
+        T oldValue = get(index);
         container[index] = newValue;
         return oldValue;
     }
 
     @Override
     public T remove(int index) {
-        Objects.checkIndex(index, size);
-        T oldValue = container[index];
+        T oldValue = get(index);
         System.arraycopy(container, index + 1, container, index, container.length - 1 - index);
         container[container.length - 1] = null;
         size--;
@@ -53,7 +50,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
         return size;
     }
 
-    public T[] grow() {
+    private T[] grow() {
         int newCapacity = container.length * 2 + 1;
         return Arrays.copyOf(container, newCapacity);
     }
