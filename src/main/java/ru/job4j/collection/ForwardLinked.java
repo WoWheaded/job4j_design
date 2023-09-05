@@ -51,12 +51,10 @@ public class ForwardLinked<T> implements Iterable<T> {
         head = new Node<>(value, head);
         size++;
         modCount++;
-
     }
 
     public Iterator<T> iterator() {
         return new Iterator<T>() {
-            private int index = 0;
             private Node<T> currentNode = head;
             private int expectedModCount = modCount;
 
@@ -65,7 +63,7 @@ public class ForwardLinked<T> implements Iterable<T> {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return index < size;
+                return currentNode != null;
             }
 
             @Override
@@ -75,7 +73,6 @@ public class ForwardLinked<T> implements Iterable<T> {
                 }
                 T value = currentNode.item;
                 currentNode = currentNode.next;
-                index++;
                 return value;
             }
         };
