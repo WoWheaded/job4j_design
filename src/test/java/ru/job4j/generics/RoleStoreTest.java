@@ -1,18 +1,10 @@
 package ru.job4j.generics;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RoleStoreTest {
-
-    @BeforeEach
-    void createRoleStoreClass() {
-        RoleStore roleStore = new RoleStore();
-        roleStore.add(new Role("1", "ADMIN"));
-        roleStore.add(new Role("2", "USER"));
-    }
 
     @Test
     void whenAddAndFindThenRoleIsAdmin() {
