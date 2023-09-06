@@ -14,7 +14,6 @@ public class SimpleArraySet<T> implements SimpleSet<T> {
         boolean rsl = !contains(value);
         if (rsl) {
             set.add(value);
-            rsl = true;
         }
         return rsl;
     }
