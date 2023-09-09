@@ -17,11 +17,11 @@ public class LogFilter {
             String line;
             while ((line = in.readLine()) != null) {
                 String[] parts = line.split(" ");
-                if (parts[parts.length - 2].equals("404")) {
+                if ("404".equals(parts[parts.length - 2])) {
                     result.add(line);
                 }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return result;
@@ -33,7 +33,7 @@ public class LogFilter {
             for (String line : data) {
                 printWriter.println(line);
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -42,8 +42,5 @@ public class LogFilter {
         LogFilter logFilter = new LogFilter("data/log.txt");
         new LogFilter("data/log.txt").saveTo("data/404.txt");
         logFilter.filter().forEach(System.out::println);
-
     }
-
-
 }
