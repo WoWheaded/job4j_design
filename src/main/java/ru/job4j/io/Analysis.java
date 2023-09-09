@@ -8,17 +8,17 @@ public class Analysis {
              PrintWriter writer = new PrintWriter(new FileWriter(target))) {
             String line;
             String startTime = null;
-            boolean serverDown = false;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(" ");
                 String status = parts[0];
                 String time = parts[1];
-                if ((status.equals("400") || status.equals("500")) && !serverDown) {
+                if ((status.equals("400") || status.equals("500")) && startTime == null) {
                     startTime = time;
-                    serverDown = true;
-                } else if ((status.equals("200") || status.equals("300")) && serverDown) {
-                    writer.println(startTime + ";" + time + ";");
-                    serverDown = false;
+                } else if ((status.equals("200") || status.equals("300")) && startTime != null) {
+                    StringBuilder entry = new StringBuilder(startTime);
+                    entry.append(';').append(time).append(';');
+                    writer.println(entry);
+                    startTime = null;
                 }
             }
         } catch (IOException e) {
