@@ -6,7 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
 
@@ -16,10 +19,7 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         if (Files.isRegularFile(file)) {
             FileProperty current = new FileProperty(Files.size(file), file.getFileName().toString());
-            if (map.containsKey(current)) {
-                map.get(current).add(file);
-            }
-            map.putIfAbsent(current, new ArrayList<>(Arrays.asList(file)));
+            map.computeIfAbsent(current, k -> new ArrayList<>()).add(file);
         }
         return super.visitFile(file, attrs);
     }
