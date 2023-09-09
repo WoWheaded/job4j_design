@@ -19,21 +19,28 @@ public class Config {
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             read.lines()
-                    .filter(line -> !line.isEmpty()
-                            && line.charAt(0) != '#'
-                            && line.contains("="))
+                    .filter(line -> !line.isEmpty() && !line.startsWith("#"))
                     .forEach(line -> {
-                        String[] temp = line.split("=", 2);
-                        String key = temp[0];
-                        String value = temp[1];
-                        if (key.isEmpty() || value.isEmpty()) {
-                            throw new IllegalArgumentException();
-                        }
+                        String[] temp = validator(line);
                         values.put(temp[0], temp[1]);
                     });
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static String[] validator(String line) {
+        if (!line.contains("=")) {
+            throw new IllegalArgumentException("Config without '=' at line: '%s'".formatted(line));
+        }
+        String[] temp = line.split("=", 2);
+        String key = temp[0];
+        String value = temp[1];
+        if (key.isEmpty() || value.isEmpty()) {
+            throw new IllegalArgumentException("Key or value is not configure at line: '%s' ".formatted(line));
+
+        }
+        return temp;
     }
 
     public String value(String key) {

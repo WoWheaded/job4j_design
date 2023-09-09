@@ -28,7 +28,8 @@ class ConfigTest {
         String path = "./data/pair_without_key.properties";
         Config config = new Config(path);
         assertThatThrownBy(config::load)
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Key or value is not configure at line: '=Dmitry Arinin' ");
     }
 
     @Test
@@ -36,7 +37,8 @@ class ConfigTest {
         String path = "./data/pair_without_value.properties";
         Config config = new Config(path);
         assertThatThrownBy(config::load)
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Key or value is not configure at line: 'name=' ");
     }
 
     @Test
@@ -44,7 +46,8 @@ class ConfigTest {
         String path = "./data/pair_without_equally.properties";
         Config config = new Config(path);
         assertThatThrownBy(config::load)
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Config without '=' at line: 'masha dasha'");
     }
 
     @Test
