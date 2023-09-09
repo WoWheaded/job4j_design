@@ -1,26 +1,35 @@
-User : ewr
+User : ghbd
 BOT : Привет
-User : привет
-BOT : Как погода?
-User : нормально
+User : sd
 BOT : Пока
-User : пока
+User : e
+BOT : Как дела?
+User : w
+BOT : Завтра утром
+User : r
+BOT : Как дела?
+User : t
+BOT : Завтра утром
+User : стор
 BOT : Как дела?
 User : стоп
-User : аыв
-User : ацу
-User : цуе
-User : ец
+User : выа
+User : цук
+User : цу
+User : ке
+User : цу
+User : ыв
+User : фыа
 User : продолжить
+BOT : Завтра утром
+User : фыв
+BOT : Завтра утром
+User : ыф
 BOT : Как погода?
-User : нормально
+User : ва
+BOT : Завтра утром
+User : афы
 BOT : Как погода?
-User : нормально же
-BOT : Пока
-User : пока
-BOT : Пока
-User : заверщить
-BOT : Как дела?
-User : завершить
-BOT : Как погода?
+User : й
+BOT : Завтра утром
 закончить

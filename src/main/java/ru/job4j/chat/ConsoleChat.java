@@ -11,6 +11,8 @@ public class ConsoleChat {
     private static final String OUT = "закончить";
     private static final String STOP = "стоп";
     private static final String CONTINUE = "продолжить";
+
+    private final Random random = new Random();
     private final String path;
     private final String botAnswers;
 
@@ -24,6 +26,7 @@ public class ConsoleChat {
         Scanner reader = new Scanner(System.in);
         String line = reader.nextLine();
         boolean pause = false;
+        List<String> phrases = readPhrases();
         while (!OUT.equals(line)) {
             logLines.add("User : " + line);
             if (STOP.equals(line)) {
@@ -32,7 +35,7 @@ public class ConsoleChat {
                 pause = false;
             }
             if (!pause) {
-                String answer = getBotResponse(readPhrases());
+                String answer = getBotResponse(phrases);
                 logLines.add("BOT : " + answer);
                 System.out.println("BOT : " + answer);
             }
@@ -43,9 +46,12 @@ public class ConsoleChat {
     }
 
     private List<String> readPhrases() {
-        List<String> phrases = null;
+        List<String> phrases = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(botAnswers, StandardCharsets.UTF_8))) {
-            phrases = reader.lines().toList();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                phrases.add(line);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,7 +59,6 @@ public class ConsoleChat {
     }
 
     private String getBotResponse(List<String> phrases) {
-        Random random = new Random();
         int index = random.nextInt(phrases.size());
         return phrases.get(index);
     }
