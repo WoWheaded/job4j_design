@@ -48,10 +48,7 @@ public class ConsoleChat {
     private List<String> readPhrases() {
         List<String> phrases = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(botAnswers, StandardCharsets.UTF_8))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                phrases.add(line);
-            }
+            phrases = reader.lines().toList();
         } catch (IOException e) {
             e.printStackTrace();
         }
