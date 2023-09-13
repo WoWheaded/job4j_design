@@ -1,0 +1,8 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<worker work="true" salary="200000" name="Dmitry">
+    <project name="Pet clinic" id="1"/>
+    <departments>
+        <department>IT</department>
+        <department>HR</department>
+    </departments>
+</worker>
