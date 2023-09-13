@@ -17,6 +17,26 @@ public class Worker {
         this.departments = departmens;
     }
 
+    public boolean isWork() {
+        return isWork;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public WorkersProject getProjects() {
+        return projects;
+    }
+
+    public String[] getDepartments() {
+        return departments;
+    }
+
     @Override
     public String toString() {
         return "Worker{"

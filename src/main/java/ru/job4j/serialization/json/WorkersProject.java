@@ -10,6 +10,14 @@ public class WorkersProject {
         this.id = id;
     }
 
+    public String getNameOfProject() {
+        return nameOfProject;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "WorkersProject{" + "nameOfProject='" + nameOfProject + '\'' + ", id=" + id + '}';
