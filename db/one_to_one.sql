@@ -7,11 +7,6 @@ CREATE TABLE COUNTRY(
 CREATE TABLE PRESIDENTS(
 	ID serial PRIMARY KEY,
 	NAME VARCHAR(50),
-	AGE int
-);
-
-CREATE TABLE COUNTRY_PRESIDENTS(
-	id serial PRIMARY KEY,
-	COUNTRY_ID int references COUNTRY(id) unique,
-    PRESIDENTS_ID int references PRESIDENTS(id) unique
+	AGE int,
+	COUNTRY_ID int references COUNTRY(ID) unique
 );
