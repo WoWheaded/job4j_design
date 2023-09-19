@@ -28,7 +28,7 @@ public class ImportDB {
             rd.lines().filter(line -> !line.isEmpty())
                     .map(line -> line.split(";", 2))
                     .forEach(line -> {
-                        if (line[0].isEmpty() || line[1].isEmpty()) {
+                        if (line.length != 2 || line[0].isEmpty() || line[1].isEmpty()) {
                             throw new IllegalArgumentException("There is no name or email");
                         }
                         line[1] = line[1].replaceAll(";", "");
